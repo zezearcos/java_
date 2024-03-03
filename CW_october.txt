@@ -1,0 +1,49 @@
+﻿#Get the day of the week
+$today = (Get-Date).DayOfWeek.value__
+
+#Find the correct cob
+if ($today -eq 6){ #saturday
+    $cobT       = (Get-date).AddDays(-1).ToString("yyyy")+""+(Get-date).AddDays(-1).ToString("MM")+""+(Get-date).AddDays(-1).ToString("dd")
+    $cobTminus1 = (Get-date).AddDays(-2).ToString("yyyy")+""+(Get-date).AddDays(-2).ToString("MM")+""+(Get-date).AddDays(-2).ToString("dd")
+} elseif($today -eq 0){ #Sunday
+    $cobT       = (Get-date).AddDays(-2).ToString("yyyy")+""+(Get-date).AddDays(-2).ToString("MM")+""+(Get-date).AddDays(-2).ToString("dd")
+    $cobTminus1 = (Get-date).AddDays(-3).ToString("yyyy")+""+(Get-date).AddDays(-3).ToString("MM")+""+(Get-date).AddDays(-3).ToString("dd")
+} elseif($today -eq 1){ #Monday
+    $cobT       = (Get-date).AddDays(-3).ToString("yyyy")+""+(Get-date).AddDays(-3).ToString("MM")+""+(Get-date).AddDays(-3).ToString("dd")
+    $cobTminus1 = (Get-date).AddDays(-4).ToString("yyyy")+""+(Get-date).AddDays(-4).ToString("MM")+""+(Get-date).AddDays(-4).ToString("dd")
+} elseif($today -eq 2){ #Tuesday
+    $cobT       = (Get-date).AddDays(-1).ToString("yyyy")+""+(Get-date).AddDays(-1).ToString("MM")+""+(Get-date).AddDays(-1).ToString("dd")
+    $cobTminus1 = (Get-date).AddDays(-4).ToString("yyyy")+""+(Get-date).AddDays(-4).ToString("MM")+""+(Get-date).AddDays(-4).ToString("dd")
+} else {
+    $cobT       = (Get-date).AddDays(-1).ToString("yyyy")+""+(Get-date).AddDays(-1).ToString("MM")+""+(Get-date).AddDays(-1).ToString("dd")
+    $cobTminus1 = (Get-date).AddDays(-2).ToString("yyyy")+""+(Get-date).AddDays(-2).ToString("MM")+""+(Get-date).AddDays(-2).ToString("dd")
+}
+
+#Array with the results folders
+$folders = 'C:\teste\'
+
+#Write cobT and CobT-1
+#Result folderst that changed more than 10% between cobs:
+
+ForEach ($item in $folders){
+
+    #CobT - sum all the files with the text results
+    $cob_1 = $item+$cobT
+    $size_1 = Get-ChildItem $cob_1 -File -Force -filter results*.txt | Measure-Object -Property Length -Sum -ErrorAction SilentlyContinue
+    $filesSizeInMB_1 = $size_1.Sum
+
+    #CobT-1 - sum all the files with the text results
+    $cob_2 = $item+$cobTminus1
+    $size_2 = Get-ChildItem $cob_2 -File -Force -filter results*.txt | Measure-Object -Property Length -Sum -ErrorAction SilentlyContinue
+    $filesSizeInMB_2 = $size_2.Sum
+
+    $total = $filesSizeInMB_1 - $filesSizeInMB_2
+    $total = [System.Math]::Abs($total)
+
+    if($total -gt ($filesSizeInMB_1*0.05)){
+    echo "entrei"
+        #space
+        #write path to the result files
+        #write path to the result files
+    }
+}

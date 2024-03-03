@@ -1,0 +1,334 @@
+Java machine independent programming language
+
+.java -> compiler -> .class
+
+Inheritance 
+Java classes are arranged in a parent-child hierarchy in which the parent and child are
+known as the superclass and subclass, every class has exactly one superclass (a single parent), 
+but possibly many subclasses
+
+javac turns Java source code into a compiled class that
+contains Java bytecode
+
+The Java Classloader is the part of the Java runtime environment that loads classes on demand (lazy loading) into the JVM (Java Virtual Machine). 
+Classes may be loaded from the local file system, a remote file system, or even the web.
+
+When the JVM is started, three class loaders are used: 
+1. Bootstrap Classloader: Loads core java API file rt.jar from folder. 
+2. Extension Classloader: Loads jar files from folder. 
+3. System/Application Classloader: Loads jar files from path specified in the CLASSPATH environment variable.
+
+Primitive Types
+boolean Logical value     true or false
+char 	16-bit, Unicode   character 64K characters
+byte 	8-bit,  signed,   two’s complement integer -128 to 127
+short 	16-bit, signed,   two’s complement integer -32,768 to 32,767
+int 	32-bit, signed,   two’s complement integer -2.1e9 to 2.1e9
+long 	64-bit, signed,   two’s complement integer -9.2e18 to 9.2e18
+float 	32-bit, IEEE 754, floating-point value 6-7 significant decimal places
+double 	64-bit, IEEE 754  15 significant decimal places
+
+Static variable
+It is a variable which belongs to the class and not to object (instance).
+Static variables are initialized only once, at the start of the execution. These variables will be initialized first, before the initialization of any instance variables.
+A single copy to be shared by all instances of the class.
+A static variable can be accessed directly by the class name and doesn’t need any object.
+Syntax: Class.variable
+
+Static method
+It is a method which belongs to the class and not to the object (instance).
+A static method can access only static data. It can not access non-static data (instance variables) unless it has/creates an instance of the class.
+A static method can call only other static methods and can not call a non-static method from it unless it has/creates an instance of the class.
+A static method can be accessed directly by the class name and doesn’t need any object.
+Syntax: Class.methodName()
+A static method cannot refer to this or super keywords in anyway.
+
+A final class cannot be subclassed. This is done for reasons of security and efficiency. 
+Accordingly, many of the Java standard library classes are final, for example java.lang.System and java.lang.String. 
+All methods in a final class are implicitly final.
+
+A final method can't be overridden by subclasses. This is used to prevent unexpected behavior from a subclass altering a method that may 
+be crucial to the function or consistency of the class.
+
+A final variable can only be initialized once, either via an initializer or an assignment statement. 
+It does not need to be initialized at the point of declaration: this is called a blank final variable. 
+A blank final instance variable of a class must be definitely assigned at the end of every constructor of the class in which 
+it is declared; similarly, a blank final static variable must be definitely assigned in a static initializer of the class in 
+which it is declared; otherwise, a compile-time error occurs in both cases.
+
+ int retValue = checkStatus();
+ switch ( retVal )
+ {
+ case MyClass.GOOD :
+ // something good
+ break;
+ case MyClass.BAD :
+ // something bad
+ break;
+ default :
+ // neither one
+ break;
+ }
+
+while ( condition )
+ statement;
+
+do
+ statement;
+while ( condition );
+
+for ( int i = 0; i < 100; i++ ) {
+ System.out.println( i );
+ int j = i;
+ ...
+}
+
+int[] arrayOfInts = new int [] { 1, 2, 3, 4 };
+for( int i : arrayOfInts )
+ System.out.println( i );
+ 
+List<String> list = new ArrayList<String>();
+list.add("foo");
+list.add("bar");
+for( String s : list )
+	System.out.println( s );
+	
+Array Types
+int[] arrayOfInts; // preferred
+arrayOfInts = new int [42];
+
+String[] states = new String [50];
+try {
+ states[0] = "California";
+ states[1] = "Oregon";
+ ...
+ states[50] = "McDonald's Land"; // Error: array out of bounds
+}
+catch ( ArrayIndexOutOfBoundsException err ) {
+ System.out.println( "Handled error: " + err.getMessage() );
+}
+
+Classes
+
+class Apple {
+ float mass;
+ float diameter = 1.0f;
+ int x, y;
+ boolean isTouching(Apple other) {
+		...
+	}
+ ...
+}
+
+Method Overloading
+Method overloading is the ability to define multiple methods with the same name in a
+class; when the method is invoked, the compiler picks the correct one based on the
+arguments passed to the method.
+
+Garbage Collection
+Java uses a technique known as garbage collection to remove objects that are no longer
+needed.
+
+private      None
+No modifier (default) Classes in the package
+protected   Classes in package and subclasses inside or outside the package
+public      All classes
+
+Collection
+
+Collection Types
+The Collection interface has three child interfaces. Set represents a collection in
+which duplicate elements are not allowed. List is a collection whose elements have a
+specific order. The Queue interface is a buffer for objects with a notion of a “head”
+element that’s next in line for processing.
+
+Set
+Set has no methods besides the ones it inherits from Collection. It simply enforces
+its no-duplicates rule.
+
+List
+The next child interface of Collection is List. The List is an ordered collection,
+similar to an array but with methods for manipulating the position of elements in the
+list
+
+Queue
+A Queue is a collection that acts like a buffer for elements. The queue maintains the
+insertion order of items placed into it and has the notion of a “head” item. Queues
+may be first in, first out (FIFO) or last in, first out (LIFO), depending on the imple
+mentation
+
+The Map Interface
+The Collections Framework also includes the java.util.Map, which is a collection of
+key/value pairs. Other names for map are “dictionary” or “associative array.” Maps
+store and retrieve elements with key values; they are very useful for things like caches
+or minimalist databases.
+
+Strings
+"J".repeat(3)
+String name = "John " + "Smith";
+String name = "John ".concat("Smith");
+
+char [] data = new char [] { 'L', 'e', 'm', 'm', 'i', 'n', 'g' };
+String lemming = new String( data );
+
+String s = "Newton";
+for ( int i = 0; i < s.length(); i++ )
+System.out.println( s.charAt( i ) );
+
+String one = "FOO";
+String two = "foo";
+one.equals( two ); // false
+one.equalsIgnoreCase( two ); // true
+
+String abc = "abc";
+String def = "def";
+String num = "123";
+if ( abc.compareTo( def ) < 0 ) // true
+if ( abc.compareTo( abc ) == 0 ) // true
+if ( abc.compareTo( num ) > 0 ) // true
+
+String url = "http://foo.bar.com/";
+if ( url.startsWith("http:") ) // true
+
+String abcs = "abcdefghijklmnopqrstuvwxyz";
+int i = abcs.indexOf( 'p' ); // 15
+int i = abcs.indexOf( "def" ); // 3
+int I = abcs.indexOf( "Fang" ); // -1
+
+String log = "There is an emergency in sector 7!";
+if ( log.contains("emergency") )
+// equivalent to
+if ( log.indexOf("emergency") != -1 )
+ 
+Threads
+Every thread has a mind of its own.
+ 
+Arrays
+int[] values = new int[3];
+int[] nums = {5,6,7};
+for(int i=0; i<values.length; i++){}
+
+String[] words = {"apple","orange","banana"}
+for(String word: words){}
+
+static
+- create a variable like Math.PI
+- create a counter of objects
+- create a method used by all the classes and to generate/initialize a ID
+
+StringBuilder better than String
+StringBuilder sb = new StringBuilder("");
+sb.append("Lion");
+
+Inheritance
+class Car extends Machine
+super.
+
+Interfaces
+is like a contract, to a class need to have some methods, is like a mechanism
+
+polymorphism
+type control the methods but the object check where to execute or use methods
+
+abstract class vs interfaces
+abstrace keyword
+subclass extends abstract class
+can have implementation methods or more abstract methods
+we can extend only one abstract class
+
+interface keyword
+subclasses implements inferface
+java 8 you can have default and static methods
+we can implement multiple interfaces
+
+Java doesn’t support multiple class level inheritance, so every class can extend only one superclass. 
+But a class can implement multiple interfaces. So most of the times Interfaces are a good choice for providing the base for 
+class hierarchy and contract. Also coding in terms of interfaces is one of the best practices for coding in java.
+
+If there are a lot of methods in the contract, then abstract class is more useful because we can provide a default implementation 
+for some of the methods that are common for all the subclasses. Also if subclasses don’t need to implement a particular method, 
+they can avoid providing the implementation but in case of interface, the subclass will have to provide the implementation 
+for all the methods even though it’s of no use and implementation is just empty block.
+
+If our base contract keeps on changing then interfaces can cause issues because we can’t declare additional 
+methods to the interface without changing all the implementation classes, with the abstract class we can provide 
+the default implementation and only change the implementation classes that are actually going to use the new methods.
+
+Exceptions
+throw e
+on the method throws exception
+
+Collections
+List ArrayList<Integer>() fast on the end, looks like an array
+List LinkedList<Integer>() fast adding on the begin or middle, pointer to next and previous
+
+HashMap<Integer, String> map = new HashMap<Integer, String>()
+map.put(8, "ola");
+String text = map.get(8);
+
+for(Map.Entry<Integer, String> entry: map.entrySet()){
+entry.getKey()
+entry.getValue()
+}
+Map interface
+LinkedHashMap - how you insert
+TreeMap - normal order
+for(Integer key: map.keySet()){
+	map.get(key)
+}
+
+Set
+HashSet<String>
+LinkedHashSet<String>
+TreeSet<String>
+
+A class needs equals and hashcode to evaluate not duplicate things
+
+Sort
+List<String> animals = new ArrayList<String>()
+Collections.sort()
+
+implements Comparator<String>
+order asc
+if(len1 > len2) return 1
+if(len1 < len2) return -1
+return 0
+
+Collections.sort(animals, new StringComparator());
+
+comparar string alphabeticamente
+s1.compareTo(s2)
+
+Arrays.sort()
+
+Arrays to List
+List al = Arrays.asList(geeks);
+
+List<String> al = new ArrayList<String>();
+// adding elements of array to arrayList.
+Collections.addAll(al, geeks);
+
+List<String> al = new ArrayList<String>();
+// Array to ArrayList Conversion
+for (String geek : geeks)
+al.add(geek);
+
+StringBuilder.reverse()
+
+System.out.println("Is the key '20' present? " +
+hash_map.containsKey(20));
+
+// Checking for the key_element '5'
+System.out.println("Is the key '5' present? " +
+hash_map.containsKey(5));
+
+String str = "journaldev";
+//string to char array
+
+char[] ch = str.toCharArray();
+ // Traverse the character array
+for (int i = 0; i < ch.length; i++) {
+
+	// Print current character
+	System.out.print(ch[i] + " ");
+}

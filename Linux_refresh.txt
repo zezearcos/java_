@@ -1,0 +1,67 @@
+sudo - perform task with elevate adm role
+pwd - find the path of your current working directory
+cd - navigate through the linux files and directories
+ls - list files and directories -R subdirectories -a hidden files -lh size human read
+cat - concatenate files
+cp - copy files
+mv - move files
+mkdir - creates a folder
+rmdir - delete an empty folder
+rm - delete files within a directory
+touch - create an empty file
+locate - find a file in the database system
+find - search in a specific location
+grep - find words in some file
+df - report system disk space
+du - check the space a file or directory takes up
+head - view the first lines in some file
+tail - last ten lines of a file
+diff - compare two files
+tar - archives multiples files into tar files
+chmod - modifies permissions in a file/directory read write and execute
+chown - change the ownership of a file
+job - list a proccess that the shell starts
+kill - kill a command
+ps - processes
+ping - checking whether a network or a service is reachable
+wget - let you download files from internet
+uname - print detailed info about your linux system and hardware
+top - all running processes
+history - will list up to 500 previously executed commands
+man - user manual
+echo - display a line of text or string 
+zip/unzip - compress your files
+hostname - to know the systemºs hostname
+useradd, userdel - create and delete users
+apt-get - advanced package tool
+nano, vi, jed - text editor
+alias unalias - create a shortcut with the same functionality
+su - run a command with a different user
+htop - interactive program that monitors system resources
+tracert - utility that uses ICMP packets to record the route through the internet from one computer to another
+nslookup - registos de dns
+ipconfig - is used to configure the kernel-resident network interfaces
+netstat - command displays various network related information such as network connections, routing tables, interface statistics, masquerade connections, multicast memberships
+dig - is a tool for querying DNS nameservers for information about host addresses, mail exchanges, nameservers, and related information
+uptime - check the last time was reboot
+wall - sends a message to everybody logged in with their mesg permission
+mesg - Lets you control if people can use the “write” command, to send text to you over the screen
+write - Let you send text directly to the screen of another Linux machine if ‘mesg’ is ‘y’
+talk - An enhancement to write command, talk command lets you talk to the logged in users
+w - uptime and who togheter
+rename - change file name
+rsync - copies files
+free - current usage status of memory
+mkpasswd - random password of the length as specified
+lsof - listem open files
+
+
+
+
+
+
+
+
+
+
+

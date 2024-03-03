@@ -1,0 +1,24 @@
+#!/bin/bash
+
+# vai buscar o dia da semana 1 - segunda 6 - domingo
+DOW=$(date +%u)
+TODAY=$(date '+%Y%m%d')
+FOLDER="/home/josefernandes/Desktop/"
+FILE="_errlog.txt"
+
+# verifica se e segunda ou outro dia da semana para ir buscar o ficheiro antigo correctamente
+if [ $DOW -eq 1 ]; then
+        DAY=$(date '+%Y%m%d' -d "-3 day")
+        OLDFILE="$FOLDER$DAY/$DAY$FILE"
+        NEWFILE="$FOLDER$TODAY/$TODAY$FILE"
+else 
+        DAY=$(date '+%Y%m%d' -d "-1 day")
+        OLDFILE="$FOLDER$DAY/$DAY$FILE"
+        NEWFILE="$FOLDER$TODAY/$TODAY$FILE"
+fi
+
+# executa a copia
+cp $OLDFILE $NEWFILE
+
+echo $OLDFILE
+echo $NEWFILE
